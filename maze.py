@@ -70,24 +70,28 @@ def move_up():
     y = player.ycor() + 24
     if is_valid_move(x,y):
         player.goto(x,y)
+    check_winner()
 
 def move_down():
     x = player.xcor()
     y = player.ycor() - 24
     if is_valid_move(x,y):
         player.goto(x,y)
+    check_winner()
 
 def move_left():
     x = player.xcor() - 24
     y = player.ycor()
     if is_valid_move(x,y):
         player.goto(x,y)
+    check_winner()
 
 def move_right():
     x = player.xcor() + 24
     y = player.ycor()
     if is_valid_move(x,y):
         player.goto(x,y)
+    check_winner()
 
 screen.listen()
 screen.onkey(move_up,'Up')
@@ -97,10 +101,12 @@ screen.onkey(move_right,'Right')
 
 def check_winner():
     if player.distance(food) < 12:
-        
+        player.hideturtle()
+        food.hideturtle()
+        screen.bye()
+        print('Congratulations! You completed the maze.')
 
-
-
+food = create_maze()        
 
 
 screen.mainloop()
